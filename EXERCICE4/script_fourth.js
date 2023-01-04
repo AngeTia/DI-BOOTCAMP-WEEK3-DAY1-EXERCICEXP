@@ -1,60 +1,44 @@
-let a = document.createElement('a');
-let allBooks = [
+const allBooks = [
     {
-        "title": "La vie du codeur",
-        "author": "Ange Tia",
-        "image": "imagedulivre",
+        "title": "Harry Potter",
+        "author": "Roman",
+        "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT99IrfJ3_BVvv08GQfE1GO0w7fXygEag5pblx5mb3ItWfmuUa4",
         "alreadyRead": true
     }, {
-        "title": "La cybersécurité",
-        "author": "Ange code",
-        "image": "imagebook2",
+        "title": "Ducobu",
+        "author": "Godi",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwG-3QUw-FWFhK5VmhLs-9m_MrABZNFCD86w&usqp=CAU",
         "alreadyRead": false
        }
 ];
-function createTable() {
-    let maTable = document.createElement("table");
-    let maTable2 = document.createElement("table");
+// Récuperer
+const listBooks = document.querySelector('.listBooks');
 
-    let firstBook = Object.entries(allBooks[0]);
-    let secondBook = Object.entries(allBooks[1]);
-    console.log(secondBook)
-    maTable.innerHTML = `
-    <tr>
-        <td>${firstBook[0][0]}</td>
-        <td>${firstBook[1][0]}</td>
-        <td>${firstBook[2][0]}</td>
-        <td>${firstBook[3][0]}</td>
-    </tr>
-    <tr>
-        <td>${firstBook[0][1]}</td>
-        <td>${firstBook[1][1]}</td>
-        <td>${firstBook[2][1]}</td>
-        <td>${firstBook[3][1]}</td>
-    </tr>`;
+//
+const table = document.createElement('table');
 
-    maTable2.innerHTML = `
-    <tr>
-        <td>${secondBook[0][0]}</td>
-        <td>${secondBook[1][0]}</td>
-        <td>${secondBook[2][0]}</td>
-        <td>${secondBook[3][0]}</td>
-    </tr>
-    <tr>
-        <td>${secondBook[0][1]}</td>
-        <td>${secondBook[1][1]}</td>
-        <td>${secondBook[2][1]}</td>
-        <td>${secondBook[3][1]}</td>
-    </tr>`;
-    maTable.setAttribute('border', "");
-    maTable.style.margin = "2rem auto";
-    maTable.style.textAlign= "center";
-    document.body.appendChild(maTable);
-    maTable2.setAttribute('border', "");
-    maTable2.style.margin = "2rem auto";
-    maTable2.style.textAlign= "center";
-    document.body.appendChild(maTable2);
+//
+listBooks.appendChild(table);
 
-   
-}
-createTable()
+//
+allBooks.forEach(book => {
+    //
+    const row = document.createElement('tr');
+
+    //
+    row.innerHTML = `<td>${book.title}</td><td>${book.author}</td>`
+
+    // 
+    const imgCell = document.createElement('td');
+    const img = document.createElement('img');
+    img.src = book.image;
+    img.style.width = '100px';
+    imgCell.appendChild(img);
+    row.appendChild(imgCell);
+
+    if (book.alreadyRead) {
+        row.style.color = 'red';
+    }
+
+    table.appendChild(row);
+})
